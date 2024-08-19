@@ -1,0 +1,1 @@
+# ag-grid-color-issue
