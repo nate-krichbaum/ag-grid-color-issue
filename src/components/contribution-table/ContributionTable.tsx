@@ -43,9 +43,12 @@ const ContributionTable = (props: Props) => {
     const gridRef: any = useRef<AgGridReact>();
     const theme = useTheme();
 
-    const [themeName, setThemeName] = useState<string>(
-        theme.theme === "dark" ? "AGTthemeDark" : "AGTthemeLight"
-    );
+    const AGTthemes =
+        theme.theme === "dark"
+            ? ["AGTthemeDark", "AGTthemeLight"]
+            : ["AGTthemeLight", "AGTthemeDark"];
+
+    const [themeName, setThemeName] = useState<string[]>(AGTthemes);
     const [gridClass, setGridClass] = useState("");
 
     const { queryData, isLoading } = {
@@ -53,11 +56,12 @@ const ContributionTable = (props: Props) => {
         isLoading: props.isLoading,
     };
 
-    const { defaultColDef, columnDefs, autoGroupColumnDef } = getColumnDefs(
-        "MediaContributionTable"
+    const { defaultColDef, columnDefs, autoGroupColumnDef } = useMemo(
+        () => getColumnDefs("MediaContributionTable"),
+        []
     );
 
-    const AGTTheme = (theme: string): AgChartTheme => {
+    const AGTtheme = (theme: string): AgChartTheme => {
         return {
             baseTheme: theme === "dark" ? "ag-default-dark" : "ag-default",
             palette: {
@@ -127,8 +131,8 @@ const ContributionTable = (props: Props) => {
     };
 
     const chartThemes = {
-        AGTthemeDark: AGTTheme("dark"),
-        AGTthemeLight: AGTTheme("light"),
+        AGTthemeDark: AGTtheme("dark"),
+        AGTthemeLight: AGTtheme("light"),
     };
 
     const popupParent = useMemo<HTMLElement | null>(() => {
@@ -203,7 +207,7 @@ const ContributionTable = (props: Props) => {
         setGridClass(
             theme.theme === "dark" ? "ag-theme-quartz-dark" : "ag-theme-quartz"
         );
-        setThemeName(theme.theme === "dark" ? "AGTthemeDark" : "AGTthemeLight");
+        setThemeName(AGTthemes);
         if (gridRef.current?.api) {
             saveChart(gridRef.current?.api);
             console.log(chartModel);
@@ -229,7 +233,7 @@ const ContributionTable = (props: Props) => {
                             popupParent={popupParent}
                             enableCharts={true}
                             customChartThemes={chartThemes}
-                            chartThemes={[themeName]}
+                            chartThemes={themeName}
                             excelStyles={excelStyles("dollar")}
                             onFirstDataRendered={onFirstDataRendered}
                             suppressCsvExport={true}
