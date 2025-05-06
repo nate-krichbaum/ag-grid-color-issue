@@ -8,13 +8,13 @@ import "./index.css";
 const rootElement = document.getElementById("root")!;
 
 if (window.location.hash !== "") {
-    console.log("hash", window.location.hash);
+  console.log("hash", window.location.hash);
 }
 if (!rootElement.innerHTML) {
-    const root = ReactDOM.createRoot(rootElement);
-    root.render(
-        <StrictMode>
-            <App />
-        </StrictMode>
-    );
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(
+    <StrictMode>
+      <App />
+    </StrictMode>,
+  );
 }

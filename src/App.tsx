@@ -8,14 +8,11 @@ const base_prefix = import.meta.env.VITE_APP_BASE_URL_PREFIX || "/";
 console.log(base_prefix);
 
 function App() {
-    return (
-        <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
-            <RouterProvider
-                router={router}
-                basepath={base_prefix}
-            ></RouterProvider>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+      <RouterProvider router={router} basepath={base_prefix}></RouterProvider>
+    </ThemeProvider>
+  );
 }
 
 export default App;
