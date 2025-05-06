@@ -42,7 +42,7 @@ export function Sidebar() {
                     : "translate-x-0 opacity-100",
                 )}
               >
-                Tets <br />
+                Test <br />
               </h1>
               <h2
                 className={cn(

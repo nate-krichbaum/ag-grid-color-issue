@@ -36,15 +36,7 @@ export function getMenuList(pathname: string): Group[] {
   return [
     {
       groupLabel: "",
-      menus: [
-        {
-          href: "/sales",
-          label: "Sales",
-          active: pathname.includes("/sales"),
-          icon: CircleGauge,
-          submenus: [],
-        },
-      ],
+      menus: [],
     },
     {
       groupLabel: "Settings",
